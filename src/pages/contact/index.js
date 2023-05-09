@@ -136,6 +136,7 @@ export default function Contact() {
                 <div className={styles.desc}>
                   <p>Description</p>
                   <p>{buyer.description}</p>
+                  {/* <p>{buyer.description}</p> */}
                 </div>
               </div>
             ))}
