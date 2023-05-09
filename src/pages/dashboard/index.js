@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { createClient } from "@supabase/supabase-js";
-import styles from "@/pages/dashboard/Dashboard.module.css";
+import styles from "@/pages/dashboard/dashboard.module.css";
 
 const supabase = createClient(
   "https://bmfekiqwrptfzlyfxxbl.supabase.co",
