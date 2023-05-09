@@ -28,7 +28,7 @@ export default function Sellers({ sellers }) {
       <Head>
         <title>Dashboard| EDC</title>
       </Head>
-      <h1 className={styles.h1}>Dashboard</h1>
+      <h1 className={styles.headline}>Dashboard</h1>
 
       {sellers.map((seller) => (
         <div key={seller.id} className={styles.sellerCard}>
