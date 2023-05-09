@@ -4,7 +4,7 @@ import styles from "./Buyers.module.css";
 import { useState, useEffect } from "react";
 import { estateTypes } from "@/data/estateTypes";
 // _______________________________1_
-import { generateBuyerProfiles } from "@/data/buyerProfiles";
+// import { generateBuyerProfiles } from "@/data/buyerProfiles";
 // _______________________________1_
 
 export default function Buyers() {
@@ -39,14 +39,14 @@ export default function Buyers() {
           setLoading(false);
         });
 
-      setBuyers(
-        generateBuyerProfiles({
-          price: parseInt(query.price),
-          size: parseInt(query.size),
-          estateType: query.estateType,
-          zipCode: parseInt(query.zipCode),
-        })
-      );
+      // setBuyers(
+      //   generateBuyerProfiles({
+      //     price: parseInt(query.price),
+      //     size: parseInt(query.size),
+      //     estateType: query.estateType,
+      //     zipCode: parseInt(query.zipCode),
+      //   })
+      // );
     }
   }, [query]);
 
