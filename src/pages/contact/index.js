@@ -115,7 +115,7 @@ export default function Contact() {
                 <div className={styles.deets}>
                   <div>
                     <div className={styles.card_content}>
-                      <p>Estate Type</p>
+                      <p className={styles.icon_boligtype}>Estate Type</p>
                       <p>{getEstateTypeName(buyer.estateType)}</p>
                     </div>
                     <div className={styles.card_content}>

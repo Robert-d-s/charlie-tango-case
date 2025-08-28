@@ -44,7 +44,8 @@
 
 .card_id {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   border-bottom: none;
 }
 
@@ -54,6 +55,12 @@
   border-bottom: 1px solid var(--dusty-aqua);
   align-items: center;
   min-height: 2.25rem;
+}
+
+.card_content p {
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .cardPageLayout {
