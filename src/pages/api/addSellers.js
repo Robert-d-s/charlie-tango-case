@@ -5,20 +5,22 @@
  */
 
 export default async function handler(req, res) {
-  // res.status(200).json({ name: req.body });
-  const response = await fetch(
-    "https://bmfekiqwrptfzlyfxxbl.supabase.co/rest/v1/Charlie_Tango_case",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: process.env.SUPABASE_KEY,
-        Prefer: "return=representation",
-      },
-      body: JSON.stringify(req.body),
-    }
-  ).then((res) => res.json());
-  console.log({ response });
-  //   req.redirect(307, "/");
-  return res.status(200).json({ response });
+  // Mock response for demo purposes - simulates successful submission
+  console.log("Received seller data:", req.body);
+  
+  // Simulate successful database insertion
+  const mockResponse = {
+    id: Math.random().toString(36).substr(2, 9),
+    ...req.body,
+    created_at: new Date().toISOString(),
+    status: "submitted"
+  };
+  
+  console.log("Mock response:", mockResponse);
+  
+  return res.status(200).json({ 
+    success: true,
+    data: mockResponse,
+    message: "Seller information submitted successfully (demo mode)"
+  });
 }

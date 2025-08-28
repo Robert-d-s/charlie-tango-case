@@ -1,24 +1,62 @@
 import Head from "next/head";
-import { createClient } from "@supabase/supabase-js";
 import styles from "@/pages/dashboard/dashboard.module.css";
 
-const supabase = createClient(
-  "https://bmfekiqwrptfzlyfxxbl.supabase.co",
-  process.env.SUPABASE_KEY
-);
+// Mock data for demo purposes
+const mockSellers = [
+  {
+    id: "1",
+    name: "Lars Nielsen",
+    email: "lars@example.dk",
+    phone: "+4512345678",
+    price: 3500000,
+    zipCode: "2100",
+    size: 120,
+    estateType: "1",
+    address: "Østerbrogade 123, 2100 København Ø",
+    consent: true,
+    buyers: [
+      {
+        id: "a3b8d425",
+        maxPrice: 3600000,
+        minSize: 110,
+        adults: 2,
+        children: 1
+      },
+      {
+        id: "b4c9e530",
+        maxPrice: 3400000,
+        minSize: 100,
+        adults: 2,
+        children: 2
+      }
+    ]
+  },
+  {
+    id: "2",
+    name: "Maria Hansen",
+    email: "maria@example.dk",
+    phone: "+4587654321",
+    price: 2800000,
+    zipCode: "2200",
+    size: 95,
+    estateType: "4",
+    address: "Nørrebrogade 456, 2200 København N",
+    consent: true,
+    buyers: [
+      {
+        id: "c5d0f635",
+        maxPrice: 3000000,
+        minSize: 80,
+        adults: 1,
+        children: 0
+      }
+    ]
+  }
+];
 
 export async function getServerSideProps() {
-  const { data: sellers, error } = await supabase
-    .from("Charlie_Tango_case")
-    .select("*");
-
-  if (error) {
-    console.error(error);
-    return { props: {} };
-  }
-  console.log("sellers:", sellers);
-
-  return { props: { sellers } };
+  // Return mock data instead of Supabase call
+  return { props: { sellers: mockSellers } };
 }
 
 export default function Sellers({ sellers }) {

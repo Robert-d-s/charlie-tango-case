@@ -43,7 +43,7 @@ export function generateBuyerProfile({
     children: faker.datatype.number({ min: 0, max: 5 }),
     description: "",
     /** The type of estate the buyer is looking for. This is just the ID, so we can find the value in `estateTypes.js` */
-    estateType: estateTypes[estateType] ? estateTypes[estateType].id : null,
+    estateType: estateTypes.find(type => type.id === estateType)?.id || estateType,
     takeoverDate: faker.date
       .between(today, endDate)
       .toISOString()
@@ -65,9 +65,9 @@ export function generateBuyerProfile({
     }
   }
 
-  result.description = `${familyName} is looking for a ${
-    estateTypes.find((item) => item.id === result.estateType).name
-  } with a minimum size of ${
+  const estateTypeName = estateTypes.find((item) => item.id === result.estateType)?.name || "property";
+  
+  result.description = `${familyName} is looking for a ${estateTypeName} with a minimum size of ${
     result.minSize
   } m2 and a maximum price of ${priceFormatter.format(
     result.maxPrice
