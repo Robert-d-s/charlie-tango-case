@@ -102,8 +102,8 @@ export default function Contact() {
               <li key={buyer.id} className={styles.card}>
                 <div className={styles.head}>
                   <div className={styles.card_id}>
-                    <p className={styles.icon_ID}>ID:&nbsp;&nbsp;</p>
-                    <p>{buyer.id}</p>
+                    <p className={styles.icon_ID}>ID:</p>
+                    <p className={styles.idValue}>{buyer.id}</p>
                   </div>
                   <button
                     className={styles.closeButton}
