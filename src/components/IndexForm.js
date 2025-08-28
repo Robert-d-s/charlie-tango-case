@@ -13,7 +13,9 @@ export default function IndexForm() {
   const validateZipCode = async (zipCode) => {
     if (zipCode.length === 4) {
       try {
-        const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zipCode}`);
+        const response = await fetch(
+          `https://api.dataforsyningen.dk/postnumre/${zipCode}`
+        );
         if (response.ok) {
           const data = await response.json();
           setZipCodeValid(true);
@@ -53,10 +55,10 @@ export default function IndexForm() {
 
     const formData = new FormData(event.target);
     const manualZipCode = formData.get("zipCode");
-    
+
     // Priority: Manual zip code > Address zip code
     const finalZipCode = manualZipCode || addressData?.zipCode;
-    
+
     const query = {
       price: formData.get("price"),
       size: formData.get("size"),
@@ -83,35 +85,52 @@ export default function IndexForm() {
         <span className={styles.label}>Size</span>
         <input name="size" required />
       </label>
-      <label>
-        <span className={styles.label}>Address (optional - with autocomplete)</span>
-        <AddressInput 
+      <label className={styles.addressRow}>
+        <span className={styles.label}>
+          Address (optional - with autocomplete)
+        </span>
+        <AddressInput
           name="address"
           onAddressSelect={handleAddressSelect}
           required={false}
         />
         {cityName && addressData && (
-          <span className={styles.cityName} style={{ color: 'green', fontSize: '0.9em', marginTop: '4px', display: 'block' }}>
+          <span
+            className={styles.cityName}
+            style={{
+              color: "green",
+              fontSize: "0.9em",
+              marginTop: "4px",
+              display: "block",
+            }}
+          >
             📍 {cityName} ({addressData?.zipCode})
           </span>
         )}
       </label>
-      
+
       <label>
-        <span className={styles.label}>Zip Code {addressData ? '(override)' : '(required)'}</span>
-        <input 
-          name="zipCode" 
+        <span className={styles.label}>
+          Zip Code {addressData ? "(override)" : "(required)"}
+        </span>
+        <input
+          name="zipCode"
           required={!addressData}
           maxLength="4"
           pattern="\d{4}"
           onChange={handleZipCodeChange}
           placeholder={addressData ? "Override address zip" : "e.g. 2100"}
           style={{
-            borderColor: zipCodeValid === false ? 'red' : zipCodeValid === true ? 'green' : '',
+            borderColor:
+              zipCodeValid === false
+                ? "red"
+                : zipCodeValid === true
+                ? "green"
+                : "",
           }}
         />
         {zipCodeValid === false && (
-          <span style={{ color: 'red', fontSize: '0.9em' }}>
+          <span style={{ color: "red", fontSize: "0.9em" }}>
             Invalid postal code
           </span>
         )}

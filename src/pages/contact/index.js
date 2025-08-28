@@ -79,14 +79,16 @@ export default function Contact() {
             Phone Number
             <input type="tel" name="phone" required />
           </label>
-          <label className={styles.label}>
+          <label className={`${styles.label} ${styles.checkboxRow}`}>
             <input
               type="checkbox"
               name="offersAndInfo"
               className={styles.checkbox_form}
             />
-            Yes please, EDC may contact me with offers and information related
-            to the real estate market.
+            <span>
+              Yes please, EDC may contact me with offers and information related
+              to the real estate market.
+            </span>
           </label>
           <button className={styles.button} type="submit">
             Contact buyers
@@ -95,7 +97,7 @@ export default function Contact() {
         <div className={styles.content}>
           <ul>
             {buyers.map((buyer) => (
-              <div key={buyer.id} className={styles.card}>
+              <li key={buyer.id} className={styles.card}>
                 <div className={styles.head}>
                   <div className={styles.card_id}>
                     <p className={styles.icon_ID}>ID:&nbsp;&nbsp;</p>
@@ -138,7 +140,7 @@ export default function Contact() {
                   <p>{buyer.description}</p>
                   {/* <p>{buyer.description}</p> */}
                 </div>
-              </div>
+              </li>
             ))}
           </ul>
         </div>
