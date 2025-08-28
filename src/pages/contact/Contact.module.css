@@ -12,10 +12,12 @@
 .layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  max-height: 85vh;
+  align-items: start;
 }
 
 @media (max-width: 968px) {
@@ -129,10 +131,10 @@
 
 .content {
   padding: 1rem;
-  max-height: 450px;
+  max-height: 60vh;
   margin-bottom: 1rem;
-  overflow-y: scroll;
-  font-size: 0.8rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
 }
 .content :first-child {
   margin-top: 0;

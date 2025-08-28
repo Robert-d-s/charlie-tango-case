@@ -21,9 +21,9 @@
   transition: transform 0.3s;
 } */
 .card {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
   transition: all 0.3s ease;
   background-color: var(--white);
   border: 1px solid var(--dusty-blue-lighter);
@@ -57,19 +57,22 @@
 
 .cardPageLayout {
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   margin: 0 auto;
   max-width: 1200px;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 /* Responsive grid adjustments */
 @media (max-width: 768px) {
   .cardPageLayout {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0 1rem;
+    max-height: 60vh;
   }
 }
 

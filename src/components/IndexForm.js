@@ -52,12 +52,17 @@ export default function IndexForm() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    const manualZipCode = formData.get("zipCode");
+    
+    // Priority: Manual zip code > Address zip code
+    const finalZipCode = manualZipCode || addressData?.zipCode;
+    
     const query = {
       price: formData.get("price"),
       size: formData.get("size"),
-      zipCode: addressData?.zipCode || formData.get("zipCode"),
+      zipCode: finalZipCode,
       estateType: formData.get("estateType"),
-      address: addressData?.fullAddress || formData.get("address"),
+      address: addressData?.fullAddress || null,
     };
 
     router.push({
@@ -79,13 +84,13 @@ export default function IndexForm() {
         <input name="size" required />
       </label>
       <label>
-        <span className={styles.label}>Address (with autocomplete)</span>
+        <span className={styles.label}>Address (optional - with autocomplete)</span>
         <AddressInput 
           name="address"
           onAddressSelect={handleAddressSelect}
-          required
+          required={false}
         />
-        {cityName && (
+        {cityName && addressData && (
           <span className={styles.cityName} style={{ color: 'green', fontSize: '0.9em', marginTop: '4px', display: 'block' }}>
             📍 {cityName} ({addressData?.zipCode})
           </span>
@@ -93,13 +98,14 @@ export default function IndexForm() {
       </label>
       
       <label>
-        <span className={styles.label}>Or just Zip Code</span>
+        <span className={styles.label}>Zip Code {addressData ? '(override)' : '(required)'}</span>
         <input 
           name="zipCode" 
+          required={!addressData}
           maxLength="4"
           pattern="\d{4}"
           onChange={handleZipCodeChange}
-          placeholder="2100 (fallback if address not selected)"
+          placeholder={addressData ? "Override address zip" : "e.g. 2100"}
           style={{
             borderColor: zipCodeValid === false ? 'red' : zipCodeValid === true ? 'green' : '',
           }}
