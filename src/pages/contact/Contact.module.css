@@ -149,6 +149,28 @@
   justify-content: space-between;
 }
 
+.closeButton {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--dusty-blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: var(--blue);
+  color: white;
+  transform: scale(1.1);
+}
+
 .deets {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -223,15 +245,24 @@
   background: var(--hover);
 }
 
-.label.checkboxRow {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-weight: 400;
-}
 .checkbox_form {
   width: 18px;
   height: 18px;
   margin-top: 2px;
+}
+
+.form input[type="checkbox"].checkbox_form {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+.label.checkboxRow {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-left: 0;
+  gap: 0.5rem;
 }

@@ -105,7 +105,12 @@ export default function Contact() {
                     <p className={styles.icon_ID}>ID:&nbsp;&nbsp;</p>
                     <p>{buyer.id}</p>
                   </div>
-                  <button onClick={() => deleteBuyer(buyer.id)}>X</button>
+                  <button
+                    className={styles.closeButton}
+                    onClick={() => deleteBuyer(buyer.id)}
+                  >
+                    ×
+                  </button>
                 </div>
                 <div className={styles.deets}>
                   <div>
@@ -140,7 +145,6 @@ export default function Contact() {
                 <div className={styles.desc}>
                   <p>Description</p>
                   <p>{buyer.description}</p>
-                  {/* <p>{buyer.description}</p> */}
                 </div>
               </li>
             ))}
