@@ -43,7 +43,9 @@ export default function Contact() {
   const [buyers, setBuyers] = useState([]);
   useEffect(() => {
     if (query.id) {
-      setBuyers(query.id.map(JSON.parse));
+      // Ensure query.id is always an array
+      const idsArray = Array.isArray(query.id) ? query.id : [query.id];
+      setBuyers(idsArray.map(JSON.parse));
     }
   }, [query.id]);
 

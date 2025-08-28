@@ -1,8 +1,12 @@
-import { useCombobox } from 'downshift';
-import { useState, useEffect } from 'react';
-import styles from '@/pages/Home.module.css';
+import { useCombobox } from "downshift";
+import { useState, useEffect } from "react";
+import styles from "@/pages/Home.module.css";
 
-export default function AddressInput({ onAddressSelect, name = "address", required = false }) {
+export default function AddressInput({
+  onAddressSelect,
+  name = "address",
+  required = false,
+}) {
   const [inputItems, setInputItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +19,9 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.dataforsyningen.dk/autocomplete?type=adresse&q=${encodeURIComponent(inputValue)}&caretpos=${caretPos}`
+        `https://api.dataforsyningen.dk/autocomplete?type=adresse&q=${encodeURIComponent(
+          inputValue
+        )}&caretpos=${caretPos}`
       );
       if (response.ok) {
         const suggestions = await response.json();
@@ -24,7 +30,7 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
         setInputItems([]);
       }
     } catch (error) {
-      console.error('Address search error:', error);
+      console.error("Address search error:", error);
       setInputItems([]);
     }
     setLoading(false);
@@ -40,7 +46,7 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
     selectItem,
   } = useCombobox({
     items: inputItems,
-    itemToString: (item) => item ? item.tekst : '',
+    itemToString: (item) => (item ? item.tekst : ""),
     onInputValueChange: ({ inputValue, isOpen, type }) => {
       // Only fetch when user is typing
       if (type === useCombobox.stateChangeTypes.InputChange) {
@@ -59,7 +65,7 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
           coordinates: {
             x: selectedItem.data.x,
             y: selectedItem.data.y,
-          }
+          },
         };
         onAddressSelect(addressData);
       }
@@ -67,34 +73,26 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
   });
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <input
         {...getInputProps({
           name,
           required,
-          placeholder: 'Start typing an address...',
-          className: styles.input,
+          placeholder: "Start typing an address...",
         })}
-        style={{
-          width: '100%',
-          padding: '0.5rem',
-          border: '2px solid var(--dusty-blue-light)',
-          borderRadius: '6px',
-          fontSize: '1rem',
-          backgroundColor: 'white',
-          transition: 'border-color 0.2s ease',
-        }}
       />
-      
+
       {loading && (
-        <div style={{ 
-          position: 'absolute', 
-          right: '10px', 
-          top: '50%', 
-          transform: 'translateY(-50%)',
-          fontSize: '12px',
-          color: '#666'
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            right: "10px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: "12px",
+            color: "#666",
+          }}
+        >
           Searching...
         </div>
       )}
@@ -102,20 +100,23 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
       <ul
         {...getMenuProps()}
         style={{
-          position: 'absolute',
-          top: '100%',
+          position: "absolute",
+          top: "100%",
           left: 0,
           right: 0,
-          backgroundColor: 'white',
-          border: isOpen && inputItems.length > 0 ? '1px solid #ccc' : 'none',
-          borderRadius: '4px',
-          boxShadow: isOpen && inputItems.length > 0 ? '0 2px 8px rgba(0,0,0,0.1)' : 'none',
+          backgroundColor: "white",
+          border: isOpen && inputItems.length > 0 ? "1px solid #ccc" : "none",
+          borderRadius: "4px",
+          boxShadow:
+            isOpen && inputItems.length > 0
+              ? "0 2px 8px rgba(0,0,0,0.1)"
+              : "none",
           zIndex: 1000,
-          maxHeight: '200px',
-          overflowY: 'auto',
+          maxHeight: "200px",
+          overflowY: "auto",
           margin: 0,
           padding: 0,
-          listStyle: 'none',
+          listStyle: "none",
         }}
       >
         {isOpen &&
@@ -124,11 +125,13 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
               key={item.data.id}
               {...getItemProps({ item, index })}
               style={{
-                backgroundColor: highlightedIndex === index ? '#f0f0f0' : 'white',
-                padding: '8px 12px',
-                cursor: 'pointer',
-                borderBottom: index < inputItems.length - 1 ? '1px solid #eee' : 'none',
-                fontSize: '14px',
+                backgroundColor:
+                  highlightedIndex === index ? "#f0f0f0" : "white",
+                padding: "8px 12px",
+                cursor: "pointer",
+                borderBottom:
+                  index < inputItems.length - 1 ? "1px solid #eee" : "none",
+                fontSize: "14px",
               }}
             >
               {item.forslagstekst}
