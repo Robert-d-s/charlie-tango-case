@@ -95,7 +95,6 @@
 .icon_boligtype::before {
   content: url("../../assets/icon-boligtype.svg");
   vertical-align: middle;
-  margin-right: 0.5rem;
 }
 .icon_budget::before {
   content: url("../../assets/icon-budget.svg");
@@ -121,7 +120,7 @@
   content: url("../../assets/icon-ID.svg");
   display: inline-block;
   vertical-align: middle;
-  margin-right: 0.25rem;
+  margin-right: 0.5rem;
 }
 .icon_calendar::before {
   content: url("../../assets/icon-calendar.svg");
