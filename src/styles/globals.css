@@ -44,7 +44,21 @@ body {
 }
 
 .wrapper {
-  max-width: 85%;
+  max-width: 1200px;
   padding: 0 1rem;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* Responsive typography and spacing */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0 0.5rem;
+  }
 }

@@ -1,11 +1,12 @@
 .headline {
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-family: var(--font-serif);
   text-align: center;
   font-weight: 400;
   margin-bottom: 1rem;
   line-height: 1.2;
-  /* grid-column: 1/3; */
+  color: var(--blue);
+  grid-column: 1 / -1;
 }
 
 /* .card {
@@ -20,19 +21,26 @@
   transition: transform 0.3s;
 } */
 .card {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
-  /* border: 2px solid var(--dusty-blue); */
-  box-shadow: 4px 4px 4px var(--dusty-aqua);
-  border-radius: 20px;
-  padding: 2rem;
-  /* max-width: 15rem; */
-  transition: transform 0.3s;
-  background-color: var(--dusty-aqua-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  background-color: var(--white);
+  border: 1px solid var(--dusty-blue-lighter);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
 }
 
 .card_id {
@@ -51,8 +59,18 @@
   display: grid;
   gap: 2rem;
   justify-content: center;
-  /* grid-template-columns: repeat(auto-fit minmax(300px 1fr)); */
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .cardPageLayout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
 }
 
 .icon_min_area::before {
@@ -123,18 +141,32 @@
 }
 
 .button {
-  padding: 0.5rem;
+  padding: 0.75rem 1.5rem;
   background: var(--blue);
   color: var(--white);
-  border-radius: 15px;
-  grid-column: 1/3;
-  width: 10rem;
-  height: 3rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  grid-column: 1 / -1;
   justify-self: center;
-  margin-bottom: 6rem;
+  margin: 1rem auto 2rem auto;
+  min-width: 180px;
 }
+
 .button:hover {
   background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .button {
+    min-width: 100%;
+    max-width: 300px;
+  }
 }
 
 .head {

@@ -77,6 +77,12 @@ export default function AddressInput({ onAddressSelect, name = "address", requir
         })}
         style={{
           width: '100%',
+          padding: '0.5rem',
+          border: '2px solid var(--dusty-blue-light)',
+          borderRadius: '6px',
+          fontSize: '1rem',
+          backgroundColor: 'white',
+          transition: 'border-color 0.2s ease',
         }}
       />
       
